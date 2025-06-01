@@ -61,8 +61,15 @@ const Product = () => {
                 <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item===size ? 'border-orange-500' :''}`} key={index}>{item}</button>
               ))}
             </div>
+            {productData.category === 'Men' && !size && (
+              <p className='text-red-500 text-sm'>Please select a size</p>
+            )}
           </div>
-          <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>
+          <button 
+            onClick={()=>addToCart(productData._id,size)} 
+            className={`px-8 py-3 text-sm ${productData.category === 'Men' && !size ? 'bg-gray-400 cursor-not-allowed' : 'bg-black text-white active:bg-gray-700'}`}
+            disabled={productData.category === 'Men' && !size}
+          >
             ADD TO CART
           </button>
           <hr className='mt-8 sm:w-4/5' />
