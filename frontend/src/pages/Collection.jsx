@@ -9,15 +9,42 @@ const Collection = () => {
   const [showFilter,setShowFilter]=useState(false);
   const [filterProducts,setFilterProducts]=useState([]);
   const[category,setCategory]=useState([]);
+  const[subcategory,setSubcategory]=useState([]);
   const[sortType,setSortType]=useState('relevant');
+
   const toggleCategory=(e)=>{
     if(category.includes(e.target.value)){
       setCategory(prev=>prev.filter(item =>item!==e.target.value))
+      // Clear subcategories when main category is unchecked
+      setSubcategory(prev=>prev.filter(item=>!getSubcategoriesForCategory(e.target.value).includes(item)))
     }
     else{
       setCategory(prev=> [...prev,e.target.value])
     }
   }
+
+  const toggleSubcategory=(e)=>{
+    if(subcategory.includes(e.target.value)){
+      setSubcategory(prev=>prev.filter(item =>item!==e.target.value))
+    }
+    else{
+      setSubcategory(prev=> [...prev,e.target.value])
+    }
+  }
+
+  const getSubcategoriesForCategory = (category) => {
+    switch(category) {
+      case 'Men':
+        return ['Kurta', 'Dhotis'];
+      case 'Women':
+        return ['Saree', 'Blouse'];
+      case 'Jewellery':
+        return ['Necklace', 'Earrings'];
+      default:
+        return [];
+    }
+  }
+
   const applyFilter=()=>{
     let productCopy=products.slice();
     if (showSearch && search) {
@@ -25,6 +52,9 @@ const Collection = () => {
     }
     if(category.length>0){
       productCopy=productCopy.filter(item=>category.includes(item.category))
+    }
+    if(subcategory.length>0){
+      productCopy=productCopy.filter(item=>subcategory.includes(item.subcategory))
     }
     setFilterProducts(productCopy)
   }
@@ -46,7 +76,7 @@ const Collection = () => {
 
   useEffect(()=>{
     applyFilter();
-  },[category, search, showSearch])
+  },[category, subcategory, search, showSearch])
   useEffect(()=>{
     sortProduct();
   },[sortType])
@@ -62,15 +92,54 @@ const Collection = () => {
         <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter? '' : 'hidden'} sm:block`}>
           <p className='mb-3 text-sm font-medium'>CATEGORIES</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'Men'} onChange={toggleCategory}/>Men
-            </p>
-            <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'Women'} onChange={toggleCategory}/>Women
-            </p>
-            <p className='flex gap-2'>
-              <input type="checkbox" className='w-3' value={'Jewellery'} onChange={toggleCategory}/>Jewellery
-            </p>
+            {/* Men Category */}
+            <div>
+              <p className='flex gap-2'>
+                <input type="checkbox" className='w-3' value={'Men'} onChange={toggleCategory}/>Men
+              </p>
+              {category.includes('Men') && (
+                <div className='ml-4 mt-2 flex flex-col gap-2'>
+                  <p className='flex gap-2'>
+                    <input type="checkbox" className='w-3' value={'Kurta'} onChange={toggleSubcategory}/>Kurta
+                  </p>
+                  <p className='flex gap-2'>
+                    <input type="checkbox" className='w-3' value={'Dhotis'} onChange={toggleSubcategory}/>Dhotis
+                  </p>
+                </div>
+              )}
+            </div>
+            {/* Women Category */}
+            <div>
+              <p className='flex gap-2'>
+                <input type="checkbox" className='w-3' value={'Women'} onChange={toggleCategory}/>Women
+              </p>
+              {category.includes('Women') && (
+                <div className='ml-4 mt-2 flex flex-col gap-2'>
+                  <p className='flex gap-2'>
+                    <input type="checkbox" className='w-3' value={'Saree'} onChange={toggleSubcategory}/>Saree
+                  </p>
+                  <p className='flex gap-2'>
+                    <input type="checkbox" className='w-3' value={'Blouse'} onChange={toggleSubcategory}/>Blouse
+                  </p>
+                </div>
+              )}
+            </div>
+            {/* Jewellery Category */}
+            <div>
+              <p className='flex gap-2'>
+                <input type="checkbox" className='w-3' value={'Jewellery'} onChange={toggleCategory}/>Jewellery
+              </p>
+              {category.includes('Jewellery') && (
+                <div className='ml-4 mt-2 flex flex-col gap-2'>
+                  <p className='flex gap-2'>
+                    <input type="checkbox" className='w-3' value={'Necklace'} onChange={toggleSubcategory}/>Necklace
+                  </p>
+                  <p className='flex gap-2'>
+                    <input type="checkbox" className='w-3' value={'Earrings'} onChange={toggleSubcategory}/>Earrings
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>        
       </div>
