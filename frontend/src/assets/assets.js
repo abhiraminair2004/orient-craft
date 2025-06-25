@@ -105,7 +105,8 @@ export const products = [
         subcategory: "Blouse",
         sizes: [],
         date: 1716634345448,
-        bestseller: true
+        bestseller: true,
+        code: "BL001"
     },
     {
         _id: "aaaab",
@@ -117,7 +118,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["M", "L", "XL"],
         date: 1716621345448,
-        bestseller: true
+        bestseller: true,
+        code: "MK001"
     },
     {
         _id: "aaaac",
@@ -129,7 +131,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716234545448,
-        bestseller: true
+        bestseller: true,
+        code: "JN001"
     },
     {
         _id: "aaaad",
@@ -141,7 +144,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "XXL"],
         date: 1716621345448,
-        bestseller: true
+        bestseller: true,
+        code: "MD001"
     },
     {
         _id: "aaaae",
@@ -153,7 +157,8 @@ export const products = [
         subcategory: "Saree",
         sizes: [],
         date: 1716622345448,
-        bestseller: true
+        bestseller: true,
+        code: "SH001"
     },
     {
         _id: "aaaaf",
@@ -165,7 +170,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716623423448,
-        bestseller: true
+        bestseller: true,
+        code: "JE001"
     },
     {
         _id: "aaaag",
@@ -177,7 +183,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "L", "XL"],
         date: 1716621542448,
-        bestseller: false
+        bestseller: false,
+        code: "MD002"
     },
     {
         _id: "aaaah",
@@ -189,7 +196,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716622345448,
-        bestseller: false
+        bestseller: false,
+        code: "MK002"
     },
     {
         _id: "aaaai",
@@ -201,7 +209,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716621235448,
-        bestseller: false
+        bestseller: false,
+        code: "JN002"
     },
     {
         _id: "aaaaj",
@@ -213,7 +222,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "L", "XL"],
         date: 1716622235448,
-        bestseller: false
+        bestseller: false,
+        code: "MD003"
     },
     {
         _id: "aaaak",
@@ -225,7 +235,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L"],
         date: 1716623345448,
-        bestseller: false
+        bestseller: false,
+        code: "MK003"
     },
     {
         _id: "aaaal",
@@ -237,7 +248,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "L", "XL"],
         date: 1716624445448,
-        bestseller: false
+        bestseller: false,
+        code: "MD004"
     },
     {
         _id: "aaaam",
@@ -249,7 +261,8 @@ export const products = [
         subcategory: "Blouse",
         sizes: [],
         date: 1716625545448,
-        bestseller: false
+        bestseller: false,
+        code: "BL002"
     },
     {
         _id: "aaaan",
@@ -261,7 +274,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716626645448,
-        bestseller: false
+        bestseller: false,
+        code: "JE002"
     },
     {
         _id: "aaaao",
@@ -273,7 +287,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716627745448,
-        bestseller: false
+        bestseller: false,
+        code: "MK004"
     },
     {
         _id: "aaaap",
@@ -285,7 +300,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716628845448,
-        bestseller: false
+        bestseller: false,
+        code: "JN003"
     },
     {
         _id: "aaaaq",
@@ -297,7 +313,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "L", "XL"],
         date: 1716629945448,
-        bestseller: false
+        bestseller: false,
+        code: "MD005"
     },
     {
         _id: "aaaar",
@@ -309,7 +326,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716631045448,
-        bestseller: false
+        bestseller: false,
+        code: "JE003"
     },
     {
         _id: "aaaas",
@@ -321,7 +339,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716632145448,
-        bestseller: false
+        bestseller: false,
+        code: "JN004"
     },
     {
         _id: "aaaat",
@@ -333,7 +352,8 @@ export const products = [
         subcategory: "Saree",
         sizes: [],
         date: 1716633245448,
-        bestseller: false
+        bestseller: false,
+        code: "SH002"
     },
     {
         _id: "aaaau",
@@ -345,7 +365,8 @@ export const products = [
         subcategory: "Blouse",
         sizes: [],
         date: 1716634345448,
-        bestseller: false
+        bestseller: false,
+        code: "BL003"
     },
     {
         _id: "aaaav",
@@ -357,7 +378,8 @@ export const products = [
         subcategory: "Saree",
         sizes: [],
         date: 1716635445448,
-        bestseller: false
+        bestseller: false,
+        code: "SH003"
     },
     {
         _id: "aaaaw",
@@ -369,7 +391,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716636545448,
-        bestseller: false
+        bestseller: false,
+        code: "JE004"
     },
     {
         _id: "aaaax",
@@ -381,7 +404,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716637645448,
-        bestseller: false
+        bestseller: false,
+        code: "JN005"
     },
     {
         _id: "aaaay",
@@ -393,7 +417,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716638745448,
-        bestseller: false
+        bestseller: false,
+        code: "JE005"
     },
     {
         _id: "aaaaz",
@@ -405,7 +430,8 @@ export const products = [
         subcategory: "Blouse",
         sizes: [],
         date: 1716639845448,
-        bestseller: false
+        bestseller: false,
+        code: "BL004"
     },
     {
         _id: "aaaba",
@@ -417,7 +443,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716640945448,
-        bestseller: false
+        bestseller: false,
+        code: "JN006"
     },
     {
         _id: "aaabb",
@@ -429,7 +456,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716642045448,
-        bestseller: false
+        bestseller: false,
+        code: "MK005"
     },
     {
         _id: "aaabc",
@@ -441,7 +469,8 @@ export const products = [
         subcategory: "Saree",
         sizes: [],
         date: 1716643145448,
-        bestseller: false
+        bestseller: false,
+        code: "SH004"
     },
     {
         _id: "aaabd",
@@ -453,7 +482,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716644245448,
-        bestseller: false
+        bestseller: false,
+        code: "JE006"
     },
     {
         _id: "aaabe",
@@ -465,7 +495,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "L", "XL"],
         date: 1716645345448,
-        bestseller: false
+        bestseller: false,
+        code: "MD006"
     },
     {
         _id: "aaabf",
@@ -477,7 +508,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716646445448,
-        bestseller: false
+        bestseller: false,
+        code: "MK006"
     },
     {
         _id: "aaabg",
@@ -489,7 +521,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716647545448,
-        bestseller: false
+        bestseller: false,
+        code: "JN007"
     },
     {
         _id: "aaabh",
@@ -501,7 +534,8 @@ export const products = [
         subcategory: "Blouse",
         sizes: [],
         date: 1716648645448,
-        bestseller: false
+        bestseller: false,
+        code: "BL005"
     },
     {
         _id: "aaabi",
@@ -513,7 +547,8 @@ export const products = [
         subcategory: "Saree",
         sizes: [],
         date: 1716649745448,
-        bestseller: false
+        bestseller: false,
+        code: "SH005"
     },
     {
         _id: "aaabj",
@@ -525,7 +560,8 @@ export const products = [
         subcategory: "Blouse",
         sizes: [],
         date: 1716650845448,
-        bestseller: false
+        bestseller: false,
+        code: "BL006"
     },
     {
         _id: "aaabk",
@@ -537,7 +573,8 @@ export const products = [
         subcategory: "Saree",
         sizes: [],
         date: 1716651945448,
-        bestseller: false
+        bestseller: false,
+        code: "SH006"
     },
     {
         _id: "aaabl",
@@ -549,7 +586,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "L", "XL"],
         date: 1716653045448,
-        bestseller: false
+        bestseller: false,
+        code: "MD007"
     },
     {
         _id: "aaabm",
@@ -561,7 +599,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716654145448,
-        bestseller: false
+        bestseller: false,
+        code: "MK007"
     },
     {
         _id: "aaabn",
@@ -573,7 +612,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "L", "XL"],
         date: 1716655245448,
-        bestseller: false
+        bestseller: false,
+        code: "MD008"
     },
     {
         _id: "aaabo",
@@ -585,7 +625,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716656345448,
-        bestseller: false
+        bestseller: false,
+        code: "MK008"
     },
     {
         _id: "aaabp",
@@ -597,7 +638,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716657445448,
-        bestseller: false
+        bestseller: false,
+        code: "JE007"
     },
     {
         _id: "aaabq",
@@ -609,7 +651,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716658545448,
-        bestseller: false
+        bestseller: false,
+        code: "JN008"
     },
     {
         _id: "aaabr",
@@ -621,7 +664,8 @@ export const products = [
         subcategory: "Blouse",
         sizes: [],
         date: 1716659645448,
-        bestseller: false
+        bestseller: false,
+        code: "BL007"
     },
     {
         _id: "aaabs",
@@ -633,7 +677,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "L", "XL"],
         date: 1716660745448,
-        bestseller: false
+        bestseller: false,
+        code: "MD009"
     },
     {
         _id: "aaabt",
@@ -645,7 +690,8 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716661845448,
-        bestseller: false
+        bestseller: false,
+        code: "MK009"
     },
     {
         _id: "aaabu",
@@ -657,7 +703,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716662945448,
-        bestseller: false
+        bestseller: false,
+        code: "JE008"
     },
     {
         _id: "aaabv",
@@ -669,7 +716,8 @@ export const products = [
         subcategory: "Dhotis",
         sizes: ["S", "M", "L", "XL"],
         date: 1716664045448,
-        bestseller: false
+        bestseller: false,
+        code: "MD010"
     },
     {
         _id: "aaabw",
@@ -681,7 +729,8 @@ export const products = [
         subcategory: "Necklace",
         sizes: [],
         date: 1716665145448,
-        bestseller: false
+        bestseller: false,
+        code: "JN009"
     },
     {
         _id: "aaabx",
@@ -693,7 +742,8 @@ export const products = [
         subcategory: "Earrings",
         sizes: [],
         date: 1716666245448, 
-        bestseller: false
+        bestseller: false,
+        code: "JE009"
     },
     {
         _id: "aaaby",
@@ -705,7 +755,8 @@ export const products = [
         subcategory: "Saree",
         sizes: [],
         date: 1716667345448,
-        bestseller: false
+        bestseller: false,
+        code: "SH007"
     },
     {
         _id: "aaabz",
@@ -717,6 +768,7 @@ export const products = [
         subcategory: "Kurta",
         sizes: ["S", "M", "L", "XL"],
         date: 1716668445448,
-        bestseller: false
+        bestseller: false,
+        code: "MK010"
     }
 ]

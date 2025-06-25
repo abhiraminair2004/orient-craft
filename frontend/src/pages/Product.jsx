@@ -55,6 +55,7 @@ const Product = () => {
           </div>
           <p className='mt-5 text-3xl font-medium'>{currency}{productData.price}</p>
           <p className='mt-5 text-gray-500 md:w-4/5'>{productData.description}</p>
+          <ProductCode products={products} productData={productData} />
           <div className='flex flex-col gap-4 my-8'>
             <div className='flex gap-2'>
               {productData.sizes.map((item,index)=>(
@@ -95,6 +96,34 @@ const Product = () => {
       <RelatedProducts category={productData.category}/>
     </div>
   ) : <div className='opacity-0'></div>
+}
+
+// Helper component for product code
+function ProductCode({ products, productData }) {
+  // Determine prefix
+  let prefix = '';
+  if (productData.category === 'Women' && productData.subcategory === 'Saree') prefix = 'SH';
+  else if (productData.category === 'Women' && productData.subcategory === 'Blouse') prefix = 'BL';
+  else if (productData.category === 'Men' && productData.subcategory === 'Kurta') prefix = 'MK';
+  else if (productData.category === 'Men' && productData.subcategory === 'Dhotis') prefix = 'MD';
+  else if (productData.category === 'Jewellery' && productData.subcategory === 'Necklace') prefix = 'JN';
+  else if (productData.category === 'Jewellery' && productData.subcategory === 'Earrings') prefix = 'JE';
+
+  // Find all products in the same subcategory
+  const subcatProducts = products.filter(
+    p => p.category === productData.category && p.subcategory === productData.subcategory
+  );
+  // Find the index of the current product in that subcategory
+  const index = subcatProducts.findIndex(p => p._id === productData._id);
+  // Code is prefix + 3-digit number (starting from 1)
+  const code = prefix ? `${prefix}${String(index + 1).padStart(3, '0')}` : '';
+
+  if (!code) return null;
+  return (
+    <div className="mt-2 text-sm text-gray-700 font-semibold">
+      Code: {code}
+    </div>
+  );
 }
 
 export default Product

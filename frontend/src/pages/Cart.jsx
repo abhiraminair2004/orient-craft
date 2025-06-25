@@ -40,6 +40,9 @@ const Cart = () => {
                     <p className='text-xs sm:text-lg font-medium'>{productData.name}</p>
                     <div className='flex items-center gap-5 mt-2'>
                       <p>{currency}{productData.price}</p>
+                      {productData.code && (
+                        <span className='text-xs text-gray-500 ml-2'>Code: {productData.code}</span>
+                      )}
                       {productData.category === 'Men' && (
                         <p className='px-2 sm:px-3 sm:py-1 border bg-slate-50'>Size: {item.size}</p>
                       )}
