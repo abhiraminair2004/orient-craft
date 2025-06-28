@@ -11,7 +11,7 @@ const NewsletterBox = () => {
             Join our newsletter for fresh finds, festive picks, and exclusive deals.
         </p>
         <form className='w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3'>
-            <input type="email" placeholder='Enter your email' className='w-full sm:flex-1 outline-none' required />
+            <input type="email" placeholder='Enter your email' className='w-full sm:flex-1 outline-none bg-[#FEFDED]' required />
             <button onSubmit={onSubmitHandler} type='submit' className='bg-black text-white text-xs px-10 py-4'>SUBSCRIBE</button>
         </form>
     </div>
