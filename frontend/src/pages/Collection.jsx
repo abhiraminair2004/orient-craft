@@ -39,7 +39,7 @@ const Collection = () => {
       case 'Women':
         return ['Saree', 'Blouse'];
       case 'Jewellery':
-        return ['Necklace', 'Earrings'];
+        return ['Necklace', 'Earrings', 'Bangles'];
       default:
         return [];
     }
@@ -136,6 +136,9 @@ const Collection = () => {
                   </p>
                   <p className='flex gap-2'>
                     <input type="checkbox" className='w-3' value={'Earrings'} onChange={toggleSubcategory}/>Earrings
+                  </p>
+                  <p className='flex gap-2'>
+                    <input type="checkbox" className='w-3' value={'Bangles'} onChange={toggleSubcategory}/>Bangles
                   </p>
                 </div>
               )}

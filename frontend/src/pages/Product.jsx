@@ -108,6 +108,7 @@ function ProductCode({ products, productData }) {
   else if (productData.category === 'Men' && productData.subcategory === 'Dhotis') prefix = 'MD';
   else if (productData.category === 'Jewellery' && productData.subcategory === 'Necklace') prefix = 'JN';
   else if (productData.category === 'Jewellery' && productData.subcategory === 'Earrings') prefix = 'JE';
+  else if (productData.category === 'Jewellery' && productData.subcategory === 'Bangles') prefix = 'JB';
 
   // Find all products in the same subcategory
   const subcatProducts = products.filter(
