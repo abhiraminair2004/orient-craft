@@ -12,6 +12,8 @@ import Orders from './pages/Orders'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   return (
     <div className="bg-cream min-h-screen">
@@ -31,6 +33,7 @@ const App = () => {
         </Routes>
         <Footer/>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   )
 }
