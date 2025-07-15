@@ -102,17 +102,17 @@ const Product = () => {
 function ProductCode({ products, productData }) {
   // Determine prefix
   let prefix = '';
-  if (productData.category === 'Women' && productData.subcategory === 'Saree') prefix = 'SH';
-  else if (productData.category === 'Women' && productData.subcategory === 'Blouse') prefix = 'BL';
-  else if (productData.category === 'Men' && productData.subcategory === 'Kurta') prefix = 'MK';
-  else if (productData.category === 'Men' && productData.subcategory === 'Dhotis') prefix = 'MD';
-  else if (productData.category === 'Jewellery' && productData.subcategory === 'Necklace') prefix = 'JN';
-  else if (productData.category === 'Jewellery' && productData.subcategory === 'Earrings') prefix = 'JE';
-  else if (productData.category === 'Jewellery' && productData.subcategory === 'Bangles') prefix = 'JB';
+  if (productData.category === 'Women' && productData.subCategory === 'Saree') prefix = 'SH';
+  else if (productData.category === 'Women' && productData.subCategory === 'Blouse') prefix = 'BL';
+  else if (productData.category === 'Men' && productData.subCategory === 'Kurta') prefix = 'MK';
+  else if (productData.category === 'Men' && productData.subCategory === 'Dhotis') prefix = 'MD';
+  else if (productData.category === 'Jewellery' && productData.subCategory === 'Necklace') prefix = 'JN';
+  else if (productData.category === 'Jewellery' && productData.subCategory === 'Earrings') prefix = 'JE';
+  else if (productData.category === 'Jewellery' && productData.subCategory === 'Bangles') prefix = 'JB';
 
-  // Find all products in the same subcategory
+  // Find all products in the same subCategory
   const subcatProducts = products.filter(
-    p => p.category === productData.category && p.subcategory === productData.subcategory
+    p => p.category === productData.category && p.subCategory === productData.subCategory
   );
   // Find the index of the current product in that subcategory
   const index = subcatProducts.findIndex(p => p._id === productData._id);

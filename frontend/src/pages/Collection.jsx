@@ -9,26 +9,26 @@ const Collection = () => {
   const [showFilter,setShowFilter]=useState(false);
   const [filterProducts,setFilterProducts]=useState([]);
   const[category,setCategory]=useState([]);
-  const[subcategory,setSubcategory]=useState([]);
+  const[subCategory,setSubCategory]=useState([]);
   const[sortType,setSortType]=useState('relevant');
 
   const toggleCategory=(e)=>{
     if(category.includes(e.target.value)){
       setCategory(prev=>prev.filter(item =>item!==e.target.value))
       // Clear subcategories when main category is unchecked
-      setSubcategory(prev=>prev.filter(item=>!getSubcategoriesForCategory(e.target.value).includes(item)))
+      setSubCategory(prev=>prev.filter(item=>!getSubcategoriesForCategory(e.target.value).includes(item)))
     }
     else{
       setCategory(prev=> [...prev,e.target.value])
     }
   }
 
-  const toggleSubcategory=(e)=>{
-    if(subcategory.includes(e.target.value)){
-      setSubcategory(prev=>prev.filter(item =>item!==e.target.value))
+  const toggleSubCategory=(e)=>{
+    if(subCategory.includes(e.target.value)){
+      setSubCategory(prev=>prev.filter(item =>item!==e.target.value))
     }
     else{
-      setSubcategory(prev=> [...prev,e.target.value])
+      setSubCategory(prev=> [...prev,e.target.value])
     }
   }
 
@@ -53,8 +53,8 @@ const Collection = () => {
     if(category.length>0){
       productCopy=productCopy.filter(item=>category.includes(item.category))
     }
-    if(subcategory.length>0){
-      productCopy=productCopy.filter(item=>subcategory.includes(item.subcategory))
+    if(subCategory.length>0){
+      productCopy=productCopy.filter(item=>subCategory.includes(item.subCategory))
     }
     setFilterProducts(productCopy)
   }
@@ -76,7 +76,7 @@ const Collection = () => {
 
   useEffect(()=>{
     applyFilter();
-  },[category, subcategory, search, showSearch])
+  },[category, subCategory, search, showSearch, products])
   useEffect(()=>{
     sortProduct();
   },[sortType])
@@ -100,10 +100,10 @@ const Collection = () => {
               {category.includes('Men') && (
                 <div className='ml-4 mt-2 flex flex-col gap-2'>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Kurta'} onChange={toggleSubcategory}/>Kurta
+                    <input type="checkbox" className='w-3' value={'Kurta'} onChange={toggleSubCategory}/>Kurta
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Dhotis'} onChange={toggleSubcategory}/>Dhotis
+                    <input type="checkbox" className='w-3' value={'Dhotis'} onChange={toggleSubCategory}/>Dhotis
                   </p>
                 </div>
               )}
@@ -116,10 +116,10 @@ const Collection = () => {
               {category.includes('Women') && (
                 <div className='ml-4 mt-2 flex flex-col gap-2'>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Saree'} onChange={toggleSubcategory}/>Saree
+                    <input type="checkbox" className='w-3' value={'Saree'} onChange={toggleSubCategory}/>Saree
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Blouse'} onChange={toggleSubcategory}/>Blouse
+                    <input type="checkbox" className='w-3' value={'Blouse'} onChange={toggleSubCategory}/>Blouse
                   </p>
                 </div>
               )}
@@ -132,13 +132,13 @@ const Collection = () => {
               {category.includes('Jewellery') && (
                 <div className='ml-4 mt-2 flex flex-col gap-2'>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Necklace'} onChange={toggleSubcategory}/>Necklace
+                    <input type="checkbox" className='w-3' value={'Necklace'} onChange={toggleSubCategory}/>Necklace
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Earrings'} onChange={toggleSubcategory}/>Earrings
+                    <input type="checkbox" className='w-3' value={'Earrings'} onChange={toggleSubCategory}/>Earrings
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Bangles'} onChange={toggleSubcategory}/>Bangles
+                    <input type="checkbox" className='w-3' value={'Bangles'} onChange={toggleSubCategory}/>Bangles
                   </p>
                 </div>
               )}
