@@ -62,14 +62,15 @@ const Product = () => {
                 <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item===size ? 'border-orange-500' :''}`} key={index}>{item}</button>
               ))}
             </div>
-            {productData.category === 'Men' && !size && (
+            {/* Show warning if size is required but not selected */}
+            {productData.sizes.length > 0 && !size && (
               <p className='text-red-500 text-sm'>Please select a size</p>
             )}
           </div>
           <button 
-            onClick={()=>addToCart(productData._id,size)} 
-            className={`px-8 py-3 text-sm ${productData.category === 'Men' && !size ? 'bg-gray-400 cursor-not-allowed' : 'bg-black text-white active:bg-gray-700'}`}
-            disabled={productData.category === 'Men' && !size}
+            onClick={()=>productData.sizes.length > 0 && !size ? null : addToCart(productData._id,size)} 
+            className={`px-8 py-3 text-sm ${productData.sizes.length > 0 && !size ? 'bg-gray-400 cursor-not-allowed' :'bg-black text-white active:bg-gray-700'}`}
+            disabled={productData.sizes.length > 0 && !size}
           >
             ADD TO CART
           </button>
