@@ -26,12 +26,13 @@ const Sidebar = ({ setToken }) => {
   return (
     <>
       {/* Mobile menu button */}
-      <div className="lg:hidden fixed top-4 left-4 z-50">
+      <div className="lg:hidden fixed top-0 left-0 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 bg-gray-800 text-white rounded-md"
+          className="p-1 bg-pink-500 bg-opacity-70 text-pink-700 rounded-md shadow-lg focus:outline-none backdrop-blur-sm"
+          aria-label="Open sidebar menu"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>

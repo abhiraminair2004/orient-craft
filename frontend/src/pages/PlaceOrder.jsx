@@ -62,11 +62,24 @@ const PlaceOrder = () => {
           // await axios.post(backendUrl + '/api/order/razorpay', orderData, { headers: { token } });
           toast.info('Razorpay payment integration goes here.');
           break;
+        case 'cod':
+          setLoading(true);
+          await axios.post(
+            backendUrl + '/api/order/place',
+            { ...orderData, paymentMethod: 'COD' },
+            { headers: { token } }
+          );
+          setCartItems({});
+          toast.success('Order placed with Cash on Delivery!');
+          setLoading(false);
+          navigate('/orders');
+          break;
         default:
           toast.error('Please select a payment method.');
           break;
       }
     } catch (error) {
+      setLoading(false);
       toast.error(error.response?.data?.message || error.message);
     }
   };
@@ -110,6 +123,10 @@ const PlaceOrder = () => {
             <div onClick={()=>setMethod('razorpay')}className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
               <p className={`min-w-3.5 h-3.5 border rounded-full ${method==='razorpay'?'bg-green-400':''}`}></p>
               <img className='h-5 mx-4' src={assets.razorpay_logo} alt="" />
+            </div>
+            <div onClick={()=>setMethod('cod')} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
+              <p className={`min-w-3.5 h-3.5 border rounded-full ${method==='cod'?'bg-green-400':''}`}></p>
+              <span className='mx-4 font-semibold'>Cash on Delivery</span>
             </div>
           </div>
           <div className="w-full text-end mt-8">

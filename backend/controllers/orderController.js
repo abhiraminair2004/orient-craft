@@ -3,20 +3,22 @@ import orderModel from "../models/orderModel.js"
 import userModel from "../models/userModel.js"
 const placeOrder = async (req, res) => {
     try {
-        const { userId, items, amount, address } = req.body;
+        const { userId, items, amount, address, paymentMethod } = req.body;
+        // Default to COD if paymentMethod is not provided
+        const method = paymentMethod || "COD";
         const orderData = {
             userId,
             items,
             address,
             amount,
-            paymentMethod: "COD",
-            payment: false,
+            paymentMethod: method,
+            payment: method === "COD" ? false : true, // For COD, payment is false; for prepaid, set to true (can adjust as needed)
             date: Date.now()
         };
         const newOrder = new orderModel(orderData);
         await newOrder.save();
         await userModel.findByIdAndUpdate(userId, { cartData: {} });
-        res.json({ success: true, message: "Order Placed" });
+        res.json({ success: true, message: `Order Placed with ${method}` });
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
@@ -33,14 +35,29 @@ const placeOrderRazorpay = async (req, res) => {
 
 // All Orders data for Admin Panel
 const allOrders = async (req, res) => {
-}
+  try {
+    const orders = await orderModel.find({});
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // update order status
 const updateStatus = async (req, res) => {
 }
 
-// Get all orders for a user
+// User Order Data For Frontend
 const userOrders = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const orders = await orderModel.find({ userId });
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 }
 
 export { placeOrder, placeOrderStripe, placeOrderRazorpay, allOrders, userOrders, updateStatus }
