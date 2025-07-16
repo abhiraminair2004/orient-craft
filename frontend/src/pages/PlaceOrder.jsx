@@ -51,10 +51,23 @@ const PlaceOrder = () => {
       };
       switch (method) {
         case 'stripe':
-          // Stripe payment API call here
-          // Example:
-          // await axios.post(backendUrl + '/api/order/stripe', orderData, { headers: { token } });
-          toast.info('Stripe payment integration goes here.');
+          setLoading(true);
+          const responseStripe = await axios.post(
+            backendUrl + '/api/order/stripe',
+            orderData,
+            { headers: { token } }
+          );
+          setLoading(false);
+          if (responseStripe.data.success) {
+            const { session_url } = responseStripe.data;
+            if (session_url) {
+              window.location.replace(session_url);
+            } else {
+              toast.error('Stripe session URL not received.');
+            }
+          } else {
+            toast.error(responseStripe.data.message || 'Stripe payment failed.');
+          }
           break;
         case 'razorpay':
           // Razorpay payment API call here
