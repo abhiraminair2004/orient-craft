@@ -1,65 +1,40 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Orders = () => {
   const [orderData, setOrderData] = useState([])
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+  const token = localStorage.getItem('token');
 
   const fetchOrders = async () => {
-    await fetch('http://localhost:4000/api/orders')
-      .then((res) => res.json())
-      .then((data) => { setOrderData(data) })
-      .catch((error) => {
-        console.log("Error fetching orders:", error)
-        // Mock data for demonstration
-        setOrderData([
-          {
-            id: 1,
-            customerName: "John Doe",
-            email: "john@example.com",
-            phone: "+1234567890",
-            address: "123 Main St, City, State 12345",
-            items: [
-              { name: "Product 1", quantity: 2, price: 29.99 },
-              { name: "Product 2", quantity: 1, price: 49.99 }
-            ],
-            total: 109.97,
-            status: "pending",
-            date: "2024-01-15"
-          },
-          {
-            id: 2,
-            customerName: "Jane Smith",
-            email: "jane@example.com",
-            phone: "+1987654321",
-            address: "456 Oak Ave, Town, State 54321",
-            items: [
-              { name: "Product 3", quantity: 1, price: 79.99 }
-            ],
-            total: 79.99,
-            status: "shipped",
-            date: "2024-01-14"
-          }
-        ])
-      })
+    if (!token) return;
+    try {
+      const response = await axios.post(
+        backendUrl + '/api/order/list',
+        {},
+        { headers: { token } }
+      );
+      if (response.data.success) {
+        setOrderData(response.data.orders)
+      } else {
+        setOrderData([])
+      }
+    } catch (error) {
+      setOrderData([])
+      if (error.response && error.response.status === 404) {
+        console.error('Endpoint not found (404). Check your backend URL and route.');
+      } else if (error.response && error.response.data) {
+        console.error('Error fetching orders:', error.response.data);
+      } else {
+        console.error('Error fetching orders:', error.message);
+      }
+    }
   }
 
   useEffect(() => {
     fetchOrders()
+    // eslint-disable-next-line
   }, [])
-
-  const updateOrderStatus = async (orderId, newStatus) => {
-    try {
-      await fetch(`http://localhost:4000/api/orders/${orderId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ status: newStatus })
-      })
-      fetchOrders()
-    } catch (error) {
-      console.log("Error updating order:", error)
-    }
-  }
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -76,72 +51,90 @@ const Orders = () => {
     <div className="max-w-7xl mx-auto">
       <div className="bg-white rounded-lg shadow-md p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Customer Orders</h1>
-        
         <div className="space-y-6">
-          {orderData.map((order) => (
-            <div key={order.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+          {orderData.map((order, orderIdx) => (
+            <div key={order._id || orderIdx} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4">
                 {/* Order Header */}
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">Order #{order.id}</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">Order #{order._id?.slice(-6) || orderIdx+1}</h3>
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(order.status)}`}>
-                      {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                      {order.status?.charAt(0).toUpperCase() + order.status?.slice(1)}
                     </span>
                   </div>
-                  
                   {/* Customer Info */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                       <h4 className="font-medium text-gray-900 mb-2">Customer Information</h4>
-                      <p className="text-sm text-gray-600">{order.customerName}</p>
-                      <p className="text-sm text-gray-600">{order.email}</p>
-                      <p className="text-sm text-gray-600">{order.phone}</p>
+                      <p className="text-sm text-gray-600">User ID: {order.userId}</p>
+                      <p className="text-sm text-gray-600">Name: {order.address?.firstName} {order.address?.lastName}</p>
+                      <p className="text-sm text-gray-600">Phone: {order.address?.phone}</p>
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-900 mb-2">Shipping Address</h4>
-                      <p className="text-sm text-gray-600">{order.address}</p>
+                      <p className="text-sm text-gray-600">
+                        {order.address && typeof order.address === 'object'
+                          ? [order.address.street, order.address.city, order.address.state, order.address.zipcode, order.address.country].filter(Boolean).join(', ')
+                          : order.address}
+                      </p>
                     </div>
                   </div>
-
                   {/* Order Items */}
                   <div className="mb-4">
                     <h4 className="font-medium text-gray-900 mb-2">Order Items</h4>
                     <div className="space-y-2">
                       {order.items.map((item, index) => (
-                        <div key={index} className="flex justify-between text-sm">
-                          <span>{item.name} x {item.quantity}</span>
+                        <div key={index} className="flex items-center justify-between text-sm gap-4">
+                          <div className="flex items-center gap-3">
+                            {item.image && item.image[0] && (
+                              <img src={item.image[0]} alt={item.name} className="w-14 h-14 object-cover rounded border" />
+                            )}
+                            <span>{item.name} x {item.quantity} {item.size && <span className="text-xs text-gray-400 ml-2">[{item.size}]</span>}</span>
+                          </div>
                           <span className="font-medium">${(item.price * item.quantity).toFixed(2)}</span>
                         </div>
                       ))}
                     </div>
                   </div>
-
                   {/* Order Total */}
                   <div className="flex justify-between items-center border-t pt-4">
                     <span className="font-semibold text-lg">Total:</span>
-                    <span className="font-bold text-xl text-blue-600">${order.total.toFixed(2)}</span>
+                    <span className="font-bold text-xl text-blue-600">${order.amount?.toFixed(2)}</span>
                   </div>
                 </div>
-
                 {/* Order Actions */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 min-w-[200px]">
                   <div className="text-sm text-gray-500">
-                    <p>Order Date: {order.date}</p>
+                    <p>Order Date: {order.date ? new Date(order.date).toLocaleString() : ''}</p>
+                    <p>Payment Method: {order.paymentMethod}</p>
+                    <p>Payment: {order.payment ? 'Paid' : 'Pending'}</p>
                   </div>
-                  
-                  <div className="flex flex-col gap-2">
+                  {/* Status update dropdown */}
+                  <div className="flex flex-col gap-2 mt-2">
                     <label className="text-sm font-medium text-gray-700">Update Status:</label>
                     <select
                       value={order.status}
-                      onChange={(e) => updateOrderStatus(order.id, e.target.value)}
+                      onChange={async (e) => {
+                        const newStatus = e.target.value;
+                        try {
+                          await axios.post(
+                            backendUrl + '/api/order/status',
+                            { orderId: order._id, status: newStatus },
+                            { headers: { token } }
+                          );
+                          setOrderData((prev) => prev.map((o) => o._id === order._id ? { ...o, status: newStatus } : o));
+                        } catch (err) {
+                          alert('Failed to update status');
+                        }
+                      }}
                       className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      <option value="pending">Pending</option>
-                      <option value="processing">Processing</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="delivered">Delivered</option>
-                      <option value="cancelled">Cancelled</option>
+                      <option value="Order Placed">Order Placed</option>
+                      <option value="Processing">Processing</option>
+                      <option value="Shipped">Shipped</option>
+                      <option value="Delivered">Delivered</option>
+                      <option value="Cancelled">Cancelled</option>
                     </select>
                   </div>
                 </div>
@@ -149,7 +142,6 @@ const Orders = () => {
             </div>
           ))}
         </div>
-
         {orderData.length === 0 && (
           <div className="text-center py-12">
             <div className="text-gray-500 text-lg">No orders found</div>

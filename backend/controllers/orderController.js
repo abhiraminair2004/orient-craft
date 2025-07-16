@@ -46,6 +46,21 @@ const allOrders = async (req, res) => {
 
 // update order status
 const updateStatus = async (req, res) => {
+  try {
+    const { orderId, status } = req.body;
+    const updatedOrder = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+    if (!updatedOrder) {
+      return res.json({ success: false, message: 'Order not found' });
+    }
+    res.json({ success: true, order: updatedOrder });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 }
 
 // User Order Data For Frontend
