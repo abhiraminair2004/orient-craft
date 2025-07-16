@@ -6,26 +6,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const placeOrderStripe = async (req, res) => {
   try {
-    const { userId, items, amount, address } = req.body;
+    const { items, amount, address } = req.body;
     const { origin } = req.headers;
     const delivery_fee = 50; // You can adjust or get from req.body if needed
     const currency = 'aud'; // Use 'aud' for Australian dollars
 
-    // 1. Create order in DB (payment: false until verified)
-    const orderData = {
-      userId,
-      items,
-      address,
-      amount,
-      paymentMethod: 'Stripe',
-      payment: false,
-      date: Date.now()
-    };
-    const newOrder = new orderModel(orderData);
-    await newOrder.save();
-    await userModel.findByIdAndUpdate(userId, { cartData: {} });
-
-    // 2. Prepare Stripe line items
+    // 1. Prepare Stripe line items
     const line_items = items.map((item) => ({
       price_data: {
         currency,
@@ -46,10 +32,13 @@ const placeOrderStripe = async (req, res) => {
       quantity: 1,
     });
 
-    // 3. Create Stripe Checkout session
+    // 2. Create Stripe Checkout session
     const session = await stripe.checkout.sessions.create({
-      success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
-      cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
+      success_url: `${origin}/verify?success=true` +
+        `&address=${encodeURIComponent(JSON.stringify(address))}` +
+        `&amount=${amount}` +
+        `&items=${encodeURIComponent(JSON.stringify(items))}`,
+      cancel_url: `${origin}/verify?success=false`,
       line_items,
       mode: 'payment',
     });
@@ -105,14 +94,24 @@ const userOrders = async (req, res) => {
 
 // Verify Stripe
 const verifyStripe = async (req, res) => {
-  const { orderId, success, userId } = req.body;
   try {
+    const { success, userId, address, amount, items } = req.body;
     if (success === "true") {
-      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      // Create the order only after successful payment
+      const orderData = {
+        userId,
+        items,
+        address,
+        amount,
+        paymentMethod: 'Stripe',
+        payment: true,
+        date: Date.now()
+      };
+      const newOrder = new orderModel(orderData);
+      await newOrder.save();
       await userModel.findByIdAndUpdate(userId, { cartData: {} });
       res.json({ success: true });
     } else {
-      await orderModel.findByIdAndDelete(orderId);
       res.json({ success: false });
     }
   } catch (error) {
