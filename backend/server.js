@@ -19,8 +19,9 @@ connectCloudinary()
 app.use(express.json())
 
 const allowedOrigins = [
-  'https://orient-craft-2itv9cebb-abhirami301204-gmailcoms-projects.vercel.app',
-  'http://localhost:5174'
+  'https://orient-craft-2itv9cebb-abhirami301204-gmailcoms-projects.vercel.app', // main frontend
+  'http://localhost:5174', // local frontend
+  'https://orient-craft-admin.vercel.app' // admin panel
 ];
 
 app.use(cors({
