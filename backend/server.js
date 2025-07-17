@@ -27,7 +27,8 @@ const allowedOrigins = [
   'https://orient-craft-admin.vercel.app', // admin panel
   'https://orient-craft.vercel.app', // user production frontend
   'http://localhost:3000', // local dev (React)
-  'http://localhost:5173' // local dev (Vite)
+  'http://localhost:5173', // local dev (Vite)
+  'https://orient-craft-4ta81j1qd-abhirami301204-gmailcoms-projects.vercel.app' // new frontend deployment
 ];
 
 app.use(cors({
