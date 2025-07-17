@@ -17,7 +17,16 @@ connectCloudinary()
 
 //middlewares
 app.use(express.json())
-app.use(cors())
+
+const allowedOrigins = [
+  'https://orient-craft-2itv9cebb-abhirami301204-gmailcoms-projects.vercel.app',
+  'http://localhost:5174'
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 //api endpoints
 app.use('/api/user',userRouter)
