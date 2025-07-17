@@ -16,16 +16,30 @@ connectDB()
 connectCloudinary()
 
 //middlewares
-app.use(express.json())
+// Increase body size limits to 20MB for large payloads (e.g., product uploads)
+app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
 
+// Update allowed origins for CORS
 const allowedOrigins = [
   'https://orient-craft-2itv9cebb-abhirami301204-gmailcoms-projects.vercel.app', // main frontend
   'http://localhost:5174', // local frontend
-  'https://orient-craft-admin.vercel.app' // admin panel
+  'https://orient-craft-admin.vercel.app', // admin panel
+  'https://orient-craft.vercel.app', // user production frontend
+  'http://localhost:3000', // local dev (React)
+  'http://localhost:5173' // local dev (Vite)
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 
