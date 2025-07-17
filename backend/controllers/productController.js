@@ -1,5 +1,21 @@
 import productModel from '../models/productModel.js'
 import {v2 as cloudinary} from "cloudinary"
+import streamifier from 'streamifier'
+
+// Helper to upload buffer to Cloudinary
+const uploadFromBuffer = (buffer) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
+      if (result) {
+        resolve(result.secure_url);
+      } else {
+        reject(error);
+      }
+    });
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
+};
+
 // function for adding product
 const addProduct = async (req, res) => {
   try {
@@ -23,8 +39,7 @@ const addProduct = async (req, res) => {
 
     let imageUrl = await Promise.all(
       images.map(async (item) => {
-        let result = await cloudinary.uploader.upload(item.path, { resource_type: 'image' });
-        return result.secure_url;
+        return await uploadFromBuffer(item.buffer);
       })
     );
     
