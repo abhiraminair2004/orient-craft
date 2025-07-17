@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const Orders = () => {
   const [orderData, setOrderData] = useState([])
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+  const backendUrl = 'https://orient-backend.vercel.app';
   const token = localStorage.getItem('token');
 
   const fetchOrders = async () => {

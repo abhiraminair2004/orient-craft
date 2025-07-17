@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const backendUrl = "http://localhost:4000";
+const backendUrl = "https://orient-backend.vercel.app";
 
 const CATEGORY_OPTIONS = [
   { value: 'Men', label: 'Men', subcategories: ['Kurta', 'Dhotis'] },
