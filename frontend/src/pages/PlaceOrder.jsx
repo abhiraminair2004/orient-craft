@@ -22,6 +22,13 @@ const PlaceOrder = () => {
   const { cartItems, products, getCartAmount, delivery_fee, token, backendUrl, navigate, setCartItems } = useContext(ShopContext);
   const [loading, setLoading] = useState(false);
 
+  // Redirect to login if not authenticated
+  React.useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+  }, [token, navigate]);
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
