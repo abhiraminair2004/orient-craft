@@ -5,6 +5,6 @@ const connectDB= async()=>{
         console.log("DB Connected")
     })
     console.log('MONGODB_URI:', process.env.MONGODB_URI);
-    await mongoose.connect(`${process.env.MONGODB_URI}/orient-craft`)
+    await mongoose.connect(process.env.MONGODB_URI)
 }
 export default connectDB;
