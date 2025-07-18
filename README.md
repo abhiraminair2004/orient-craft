@@ -3,6 +3,8 @@
 **OrientCraft** is a modern full-stack e-commerce platform built to showcase and manage handcrafted and fine jewelry. It features a beautiful storefront, secure authentication, cart functionality, and a fully-equipped admin panel for product and order management — built using the MERN stack and modern UI frameworks.
 
 ---
+<img width="1920" height="831" alt="image" src="https://github.com/user-attachments/assets/3d7ade50-4619-49a0-9ddf-c1f6758d965a" />
+
 
 ## 🌐 Live Demos
 
@@ -138,8 +140,9 @@ npm run dev
 
 ## 🖼️ Screenshots
 
-<img width="1920" height="856" alt="image" src="https://github.com/user-attachments/assets/67a9da08-dd47-46b4-b91d-3a17662f919c" />
-<img width="1872" height="782" alt="image" src="https://github.com/user-attachments/assets/b2747037-515c-4b6c-a93b-eabe03392772" />
+<img width="1920" height="880" alt="image" src="https://github.com/user-attachments/assets/2b216dd9-4014-4c03-8d6e-5008c8b1535c" />
+<img width="1919" height="850" alt="image" src="https://github.com/user-attachments/assets/ce8139bf-f724-4778-9fac-b507f97b4685" />
+
 
 
 ---
