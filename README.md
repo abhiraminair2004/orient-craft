@@ -1,6 +1,6 @@
 # 🛍️ OrientCraft – Full Stack E-commerce Web App
 
-**OrientCraft** is a modern full-stack e-commerce platform built to showcase and manage handcrafted and fine jewelry. It features a beautiful storefront, secure authentication, cart functionality, and a fully-equipped admin panel for product and order management — built using the MERN stack and modern UI frameworks.
+**OrientCraft** is a modern full-stack e-commerce platform built to showcase and manage handcrafted and fine jewelry, along with a curated collection of ethnic wear for both men and women. It features a beautiful storefront, secure authentication, cart functionality, and a fully-equipped admin panel for product and order management — all built using the MERN stack and modern UI frameworks.
 
 ---
 <img width="1920" height="831" alt="image" src="https://github.com/user-attachments/assets/3d7ade50-4619-49a0-9ddf-c1f6758d965a" />
