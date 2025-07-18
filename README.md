@@ -110,7 +110,7 @@ cd ../server
 npm install
 ```
 
-### 3. Create `.env` file in `/server`
+### 3. Create `.env` file in `/backend`
 
 ```env
 MONGODB_URI=your_mongodb_connection_string
