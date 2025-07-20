@@ -9,7 +9,7 @@ const backendUrl = "https://orient-backend.vercel.app";
 const CATEGORY_OPTIONS = [
   { value: 'Men', label: 'Men', subcategories: ['Kurta', 'Dhotis'] },
   { value: 'Women', label: 'Women', subcategories: ['Saree', 'Blouse'] },
-  { value: 'Jewellery', label: 'Jewellery', subcategories: ['Necklace', 'Earrings', 'Bangles'] },
+  { value: 'Jewellery', label: 'Jewellery', subcategories: ['Necklace', 'Earrings', 'Bangles', 'Pendants'] },
 ];
 
 const SIZE_OPTIONS = ['S', 'M', 'L', 'XL', 'XXL'];
