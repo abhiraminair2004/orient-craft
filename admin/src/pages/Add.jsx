@@ -14,6 +14,16 @@ const CATEGORY_OPTIONS = [
 
 const SIZE_OPTIONS = ['S', 'M', 'L', 'XL', 'XXL'];
 
+const COLOUR_OPTIONS = [
+  'purple',
+  'black',
+  'blue',
+  'white',
+  'purple + white',
+  'white + black',
+  'purple + green + white',
+];
+
 const Add = ({ token, setToken }) => {
   const [images, setImages] = useState([null, null, null, null]);
   const [productDetails, setProductDetails] = useState({
@@ -24,6 +34,7 @@ const Add = ({ token, setToken }) => {
     category: '',
     subCategory: '',
     sizes: [],
+    colours: [],
     bestseller: false,
     date: Date.now(),
     code: ''
@@ -47,6 +58,14 @@ const Add = ({ token, setToken }) => {
         newSizes = newSizes.filter(s => s !== value);
       }
       setProductDetails({ ...productDetails, sizes: newSizes });
+    } else if (name === 'colours') {
+      let newColours = [...productDetails.colours];
+      if (checked) {
+        newColours.push(value);
+      } else {
+        newColours = newColours.filter(c => c !== value);
+      }
+      setProductDetails({ ...productDetails, colours: newColours });
     } else {
       setProductDetails({ ...productDetails, [name]: value });
       if (name === 'category') {
@@ -67,6 +86,7 @@ const Add = ({ token, setToken }) => {
     formData.append('date', Date.now());
     formData.append('code', productDetails.code);
     formData.append('sizes', JSON.stringify(productDetails.sizes));
+    formData.append('colours', JSON.stringify(productDetails.colours));
     images.forEach((img, idx) => {
       if (img) {
         formData.append(`image${idx + 1}`, img);
@@ -95,6 +115,7 @@ const Add = ({ token, setToken }) => {
         category: '',
         subCategory: '',
         sizes: [],
+        colours: [],
         bestseller: false,
         date: Date.now(),
         code: ''
@@ -215,9 +236,27 @@ const Add = ({ token, setToken }) => {
                     value={size}
                     checked={productDetails.sizes.includes(size)}
                     onChange={changeHandler}
-                    className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                    className="h-6 w-6 text-blue-600 border-gray-300 rounded"
                   />
                   <span>{size}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Colours (optional)</label>
+            <div className="flex gap-4 flex-wrap">
+              {COLOUR_OPTIONS.map(colour => (
+                <label key={colour} className="flex items-center gap-1">
+                  <input
+                    type="checkbox"
+                    name="colours"
+                    value={colour}
+                    checked={productDetails.colours.includes(colour)}
+                    onChange={changeHandler}
+                    className="h-6 w-6 text-blue-600 border-gray-300 rounded"
+                  />
+                  <span>{colour}</span>
                 </label>
               ))}
             </div>

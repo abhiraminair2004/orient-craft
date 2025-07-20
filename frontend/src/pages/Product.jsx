@@ -10,6 +10,7 @@ const Product = () => {
   const[productData,setProductData]=useState(false);
   const [image, setImage]= useState('')
   const [size,setSize]=useState('')
+  const [colour,setColour]=useState('')
 
   const fetchProductData =async ()=>{
     products.map((item)=>{
@@ -66,11 +67,26 @@ const Product = () => {
             {productData.sizes.length > 0 && !size && (
               <p className='text-red-500 text-sm'>Please select a size</p>
             )}
+            {/* Colour selection */}
+            {productData.colours && productData.colours.length > 0 && (
+              <div className='flex gap-2 mt-2'>
+                {productData.colours.map((c, idx) => (
+                  <button onClick={()=>setColour(c)} className={`border py-2 px-4 bg-gray-100 ${c===colour ? 'border-purple-500' :''}`} key={idx}>{c}</button>
+                ))}
+              </div>
+            )}
+            {/* Show warning if colour is required but not selected */}
+            {productData.colours && productData.colours.length > 0 && !colour && (
+              <p className='text-red-500 text-sm'>Please select a colour</p>
+            )}
           </div>
           <button 
-            onClick={()=>productData.sizes.length > 0 && !size ? null : addToCart(productData._id,size)} 
-            className={`px-8 py-3 text-sm ${productData.sizes.length > 0 && !size ? 'bg-gray-400 cursor-not-allowed' :'bg-black text-white active:bg-gray-700'}`}
-            disabled={productData.sizes.length > 0 && !size}
+            onClick={()=>{
+              if ((productData.sizes.length > 0 && !size) || (productData.colours && productData.colours.length > 0 && !colour)) return;
+              addToCart(productData._id, size, colour);
+            }} 
+            className={`px-8 py-3 text-sm ${(productData.sizes.length > 0 && !size) || (productData.colours && productData.colours.length > 0 && !colour) ? 'bg-gray-400 cursor-not-allowed' :'bg-black text-white active:bg-gray-700'}`}
+            disabled={(productData.sizes.length > 0 && !size) || (productData.colours && productData.colours.length > 0 && !colour)}
           >
             ADD TO CART
           </button>

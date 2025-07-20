@@ -12,9 +12,12 @@ const Cart = () => {
     for(const items in cartItems){
       for(const item in cartItems[items]){
         if (cartItems[items][item]>0) {
+          // Parse size and colour from key
+          const [size, colour] = item.split('|');
           tempData.push({
             _id: items,
-            size: item,
+            size,
+            colour,
             quantity:cartItems[items][item]
           })
         }
@@ -44,14 +47,17 @@ const Cart = () => {
                       {productData.code && (
                         <span className='text-xs text-gray-500 ml-2'>Code: {productData.code}</span>
                       )}
-                      {productData.category === 'Men' && (
+                      {item.size && (
                         <p className='px-2 sm:px-3 sm:py-1 border bg-slate-50'>Size: {item.size}</p>
+                      )}
+                      {item.colour && (
+                        <p className='px-2 sm:px-3 sm:py-1 border bg-purple-50'>Colour: {item.colour}</p>
                       )}
                     </div>
                   </div>
                 </div>
-                <input onChange={(e)=>e.target.value===''||e.target.value ==='0'?null:updateQuantity(item._id,item.size,Number(e.target.value))} className='border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 bg-[#FEFDED]' type="number" min={1} defaultValue={item.quantity} />
-                <img onClick={()=>updateQuantity(item._id, item.size,0)} src={assets.bin_icon} className='w-4 mr-4 sm:w-5 cursor-pointer' alt="" />
+                <input onChange={(e)=>e.target.value===''||e.target.value ==='0'?null:updateQuantity(item._id,item.size,item.colour,Number(e.target.value))} className='border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 bg-[#FEFDED]' type="number" min={1} defaultValue={item.quantity} />
+                <img onClick={()=>updateQuantity(item._id, item.size, item.colour,0)} src={assets.bin_icon} className='w-4 mr-4 sm:w-5 cursor-pointer' alt="" />
               </div>
             )
           })

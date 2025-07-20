@@ -19,7 +19,7 @@ const uploadFromBuffer = (buffer) => {
 // function for adding product
 const addProduct = async (req, res) => {
   try {
-    const { name, description, price, category, subCategory, sizes, bestseller, code } = req.body;
+    const { name, description, price, category, subCategory, sizes, colours, bestseller, code } = req.body;
 
     // Check if files were uploaded
     if (!req.files) {
@@ -51,6 +51,7 @@ const addProduct = async (req, res) => {
       category,
       subCategory,
       sizes: JSON.parse(sizes),
+      colours: colours ? JSON.parse(colours) : undefined,
       bestseller: bestseller === "true" ? true : false,
       date: Date.now(),
       code
