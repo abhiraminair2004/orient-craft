@@ -12,7 +12,9 @@ const List = ({ token }) => {
     try {
       const response = await axios.get(backendUrl + '/api/product/list');
       if (response.data.success) {
-        setList(response.data.products);
+        // Sort by date descending (most recent first)
+        const sorted = response.data.products.slice().sort((a, b) => b.date - a.date);
+        setList(sorted);
       } else {
         toast.error(response.data.message);
       }
