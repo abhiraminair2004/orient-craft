@@ -95,15 +95,15 @@ const Collection = () => {
             {/* Men Category */}
             <div>
               <p className='flex gap-2'>
-                <input type="checkbox" className='w-3' value={'Men'} onChange={toggleCategory}/>Men
+                <input type="checkbox" className='w-5 h-5' value={'Men'} onChange={toggleCategory}/>Men
               </p>
               {category.includes('Men') && (
                 <div className='ml-4 mt-2 flex flex-col gap-2'>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Kurta'} onChange={toggleSubCategory}/>Kurta
+                    <input type="checkbox" className='w-5 h-5' value={'Kurta'} onChange={toggleSubCategory}/>Kurta
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Dhotis'} onChange={toggleSubCategory}/>Dhotis
+                    <input type="checkbox" className='w-5 h-5' value={'Dhotis'} onChange={toggleSubCategory}/>Dhotis
                   </p>
                 </div>
               )}
@@ -111,15 +111,15 @@ const Collection = () => {
             {/* Women Category */}
             <div>
               <p className='flex gap-2'>
-                <input type="checkbox" className='w-3' value={'Women'} onChange={toggleCategory}/>Women
+                <input type="checkbox" className='w-5 h-5' value={'Women'} onChange={toggleCategory}/>Women
               </p>
               {category.includes('Women') && (
                 <div className='ml-4 mt-2 flex flex-col gap-2'>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Saree'} onChange={toggleSubCategory}/>Saree
+                    <input type="checkbox" className='w-5 h-5' value={'Saree'} onChange={toggleSubCategory}/>Saree
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Blouse'} onChange={toggleSubCategory}/>Blouse
+                    <input type="checkbox" className='w-5 h-5' value={'Blouse'} onChange={toggleSubCategory}/>Blouse
                   </p>
                 </div>
               )}
@@ -127,24 +127,24 @@ const Collection = () => {
             {/* Jewellery Category */}
             <div>
               <p className='flex gap-2'>
-                <input type="checkbox" className='w-3' value={'Jewellery'} onChange={toggleCategory}/>Jewellery
+                <input type="checkbox" className='w-5 h-5' value={'Jewellery'} onChange={toggleCategory}/>Jewellery
               </p>
               {category.includes('Jewellery') && (
                 <div className='ml-4 mt-2 flex flex-col gap-2'>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Necklace'} onChange={toggleSubCategory}/>Necklace
+                    <input type="checkbox" className='w-5 h-5' value={'Necklace'} onChange={toggleSubCategory}/>Necklace
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Earrings'} onChange={toggleSubCategory}/>Earrings
+                    <input type="checkbox" className='w-5 h-5' value={'Earrings'} onChange={toggleSubCategory}/>Earrings
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Bangles'} onChange={toggleSubCategory}/>Bangles
+                    <input type="checkbox" className='w-5 h-5' value={'Bangles'} onChange={toggleSubCategory}/>Bangles
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Pendants'} onChange={toggleSubCategory}/>Pendants
+                    <input type="checkbox" className='w-5 h-5' value={'Pendants'} onChange={toggleSubCategory}/>Pendants
                   </p>
                   <p className='flex gap-2'>
-                    <input type="checkbox" className='w-3' value={'Nosestuds'} onChange={toggleSubCategory}/>Nosestuds
+                    <input type="checkbox" className='w-5 h-5' value={'Nosestuds'} onChange={toggleSubCategory}/>Nosestuds
                   </p>
                 </div>
               )}
