@@ -15,7 +15,7 @@ const Contact = () => {
           <p className='text-gray-500'>63 Eighth Avenue, Woodville Gardens <br />Adelaide, SA 5012, Australia
           </p>
           <p className='font-semibold text-xl text-gray-600'>Contact Info:</p>
-          <p className='text-gray-500'>Phone no.: +61-0405840398<br /> Email: orientcraft2025@gmail.com</p>
+          <p className='text-gray-500'>Phone no.: +61-0405840398 - Harikumar<br/>Phone no.: +61-0401578269 - Preethy<br /> Email: orientcraft2025@gmail.com</p>
         </div>
       </div>
     </div>
