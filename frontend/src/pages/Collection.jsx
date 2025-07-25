@@ -81,6 +81,18 @@ const Collection = () => {
     sortProduct();
   },[sortType])
 
+  useEffect(() => {
+    const savedCategory = JSON.parse(localStorage.getItem('collectionCategory')) || [];
+    const savedSubCategory = JSON.parse(localStorage.getItem('collectionSubCategory')) || [];
+    setCategory(savedCategory);
+    setSubCategory(savedSubCategory);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('collectionCategory', JSON.stringify(category));
+    localStorage.setItem('collectionSubCategory', JSON.stringify(subCategory));
+  }, [category, subCategory]);
+
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* filter options */}
